@@ -27,10 +27,24 @@
     border-radius: 10px;
     background: #fafafa;
     padding: 5px 5px;
-    animation: 2s cart_anim;
+    animation: 2s anim;
     margin: 5px auto;
 }
-@keyframes cart_anim {
+
+/* animation */
+.transform_anim{
+  animation: 3s transform infinite;
+}
+@keyframes transform {
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(360deg);}
+}
+/* animation */
+
+/* animation */
+.anim{ animation: 2s anim; }
+@keyframes anim {
     0%{opacity: 0;}
     100%{opacity: 1;}
 }
+/* animation */

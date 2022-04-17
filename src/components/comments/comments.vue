@@ -19,7 +19,7 @@
 export default {
     
      mounted(){
-         return this.$store.dispatch('Comments/getComments')
+         return this.$store.dispatch('Comments/GET_DATA')
      } , 
 
      computed : {

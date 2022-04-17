@@ -17,7 +17,7 @@
 export default {
     
     mounted(){
-        return this.$store.dispatch('Posts/getPosts')
+        return this.$store.dispatch('Posts/GET_DATA')
     } ,
 
     computed : {

@@ -19,7 +19,7 @@
 export default {
     
      mounted(){
-         return this.$store.dispatch('Users/getUsers')
+         return this.$store.dispatch('Users/GET_DATA')
      } , 
 
      computed : {

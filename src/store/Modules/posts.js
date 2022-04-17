@@ -1,4 +1,6 @@
 import axios from "axios"
+import { GET_DATA } from '../constans/actions_constans'
+import { SET_DATA } from '../constans/mutation_constans'
 
 const Posts = {
 
@@ -13,14 +15,14 @@ const Posts = {
         }
     },
     mutations: {
-        setPosts(state , posts){
+        [SET_DATA](state , posts){
             return state.posts = posts
         }
     },
     actions: {
-       async getPosts({commit}){
+       async [GET_DATA]({commit}){
            const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-           commit('setPosts' , response.data)
+           commit('SET_DATA' , response.data)
        }
     },
 }

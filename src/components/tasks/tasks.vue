@@ -15,7 +15,7 @@
 export default {
     
     mounted(){
-        return this.$store.dispatch('Tasks/getTasks')
+        return this.$store.dispatch('Tasks/GET_DATA')
     } , 
 
     computed : {
