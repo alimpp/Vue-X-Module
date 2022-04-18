@@ -4,7 +4,7 @@
           <div class="col-sm-6" style="display:flex;">
              <h1>JSON Placeholder</h1>
              <h5 style="padding:20px 5px;">Posts Page</h5>
-             <i class="bi bi-arrow-repeat" @click="doLoad" :class="{'trans':refresh}" style="padding:10px 5px; font-size:30px;cursor: pointer;"></i>
+             <i class="bi bi-arrow-clockwise" @click="doLoad" :class="{'trans':refresh}" style="padding:10px 5px; font-size:30px;cursor: pointer;"></i>
           </div>
           <div class="col-sm-6" style="display:flex;">
               <input type="text" 
@@ -22,7 +22,7 @@
           </div>
           <hr>
       </div>
-      <div class="row" v-if="load">
+      <div class="row">
          <div class="col-sm-3" v-for="post in getPosts" :key="post.id">
              <div class="cart">
                  <h5 class="text_a">Title</h5>
@@ -42,7 +42,6 @@ export default {
         return{
             search : "" ,
             refresh : false , 
-            load : true 
         }
     } , 
 
@@ -73,5 +72,5 @@ export default {
 
 <style scoped >
 .trans{animation: 2s trans;}
-@keyframes trans { 0%{transform: rotate(0deg);} 100%{transform: rotate(360deg);} }
+@keyframes trans { 0%{transform: rotate(0deg);} 50%{transform: rotate(90deg);} 100%{transform: rotate(0deg);}}
 </style>
