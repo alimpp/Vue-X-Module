@@ -1,12 +1,34 @@
 <template>
   <div class="container">
-      <div class="row">
-         <div class="col-sm-6" v-for="post in getPosts" :key="post.id">
+          <div class="row">
+          <div class="col-sm-6" style="display:flex;">
+             <h1>JSON Placeholder</h1>
+             <h5 style="padding:20px 5px;">Posts Page</h5>
+             <i class="bi bi-arrow-repeat" @click="doLoad" :class="{'trans':refresh}" style="padding:10px 5px; font-size:30px;cursor: pointer;"></i>
+          </div>
+          <div class="col-sm-6" style="display:flex;">
+              <input type="text" 
+              v-model="search" 
+              class="form-control" 
+              placeholder="Search" 
+              style="width:500px; height:45px; margin:10px 5px;"
+              >
+              <select class="form-select" aria-label="Default select example" style="width:200px; height:45px; margin:10px 5px;">
+                <option selected>Filter Posts</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+               </select>
+          </div>
+          <hr>
+      </div>
+      <div class="row" v-if="load">
+         <div class="col-sm-3" v-for="post in getPosts" :key="post.id">
              <div class="cart">
-                 <h5>Title</h5>
-                 <h6>{{post.title}}</h6>
-                 <h5>Body</h5>
-                 <h6>{{post.body}}</h6>
+                 <h5 class="text_a">Title</h5>
+                 <h6 class="text_b">{{post.title}}</h6>
+                 <h5 class="text_a">Body</h5>
+                 <h6 class="text_b">{{post.body}}</h6>
              </div>
          </div>
       </div>
@@ -15,6 +37,21 @@
 
 <script>
 export default {
+
+    data(){
+        return{
+            search : "" ,
+            refresh : false , 
+            load : true 
+        }
+    } , 
+
+    methods : {
+        doLoad(){
+            this.refresh = !this.refresh
+            return this.$store.dispatch('Posts/DO_LOAD')
+        }
+    } ,
     
     mounted(){
         return this.$store.dispatch('Posts/GET_DATA')
@@ -22,13 +59,19 @@ export default {
 
     computed : {
         getPosts(){
-            return this.$store.getters['Posts/allPosts']
+          const datas = this.$store.getters['Posts/allPosts']
+          return datas.filter(data =>{
+             return data.title.match(this.search)
+          })
         }
-    }
+    } , 
+
+
 
 }
 </script>
 
 <style scoped >
-
+.trans{animation: 2s trans;}
+@keyframes trans { 0%{transform: rotate(0deg);} 100%{transform: rotate(360deg);} }
 </style>
