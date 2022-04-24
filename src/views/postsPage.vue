@@ -15,5 +15,7 @@ export default {
 .posts{
   height: 100vh; 
   overflow: scroll;
+  margin-top: 15px;
 }
+
 </style>

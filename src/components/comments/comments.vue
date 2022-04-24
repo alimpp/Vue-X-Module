@@ -4,6 +4,7 @@
           <div class="col-sm-6" style="display:flex;">
              <h1>JSON Placeholder</h1>
              <h5 style="padding:20px 5px;">Comments Page</h5>
+             <i class="bi bi-arrow-clockwise" @click="doLoad" :class="{'trans':refresh}" style="padding:10px 5px; font-size:30px;cursor: pointer;"></i>
           </div>
           <div class="col-sm-6" style="display:flex;">
               <input 
@@ -13,11 +14,12 @@
               placeholder="Search" 
               style="width:500px; height:45px; margin:10px 5px;"
               >
-              <select class="form-select" aria-label="Default select example" style="width:200px; height:45px; margin:10px 5px;">
-                <option selected>Filter Comments</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select v-model="numberFilter" @change="filterComments" class="form-select" aria-label="Default select example" style="width:200px; height:45px; margin:10px 5px;">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
                </select>
           </div>
           <hr>
@@ -44,7 +46,21 @@ export default {
 
      data(){
          return{
-             search : ""
+             search : "" , 
+             refresh : false , 
+             numberFilter : Number 
+         }
+     } ,
+
+     methods : {
+       
+         doLoad(){
+             this.refresh = !this.refresh
+             return this.$store.dispatch('Comments/DO_LOAD')
+         } ,
+
+         filterComments(){
+             return this.$store.dispatch('Comments/FILTER_DATA' , this.numberFilter)
          }
      } ,
     
@@ -64,6 +80,7 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped >
+.trans{animation: 1s trans;}
+@keyframes trans { 0%{transform: rotate(0deg);} 50%{transform: rotate(150deg);} 100%{transform: rotate(0deg);}}
 </style>

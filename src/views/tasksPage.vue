@@ -15,5 +15,6 @@ export default {
 .tasks{
   height: 100vh;
   overflow: scroll;
+  margin-top: 15px;
 }
 </style>

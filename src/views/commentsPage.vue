@@ -15,5 +15,6 @@ export default {
 .comments{
   height: 100vh; 
   overflow: scroll;
+  margin-top: 15px;
 }
 </style>

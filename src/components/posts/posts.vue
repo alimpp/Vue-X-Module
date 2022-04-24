@@ -13,16 +13,20 @@
               placeholder="Search" 
               style="width:500px; height:45px; margin:10px 5px;"
               >
-              <select class="form-select" aria-label="Default select example" style="width:200px; height:45px; margin:10px 5px;">
-                <option selected>Filter Posts</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-               </select>
+              <select v-model="numberFilter" @change="filterPosts" class="form-select" aria-label="Default select example" style="width:200px; height:45px; margin:10px 5px;">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
           </div>
           <hr>
       </div>
-      <div class="row">
+      <div class="loading_box" v-if="loading">
+      <img src="@/assets/api-icon.png" class="transform_anim" style="width:100px; height:100px; border-radius:50%; padding-bottom:5px;">
+      </div>
+      <div class="row" v-else>
          <div class="col-sm-3" v-for="post in getPosts" :key="post.id">
              <div class="cart">
                  <h5 class="text_a">Title</h5>
@@ -42,6 +46,9 @@ export default {
         return{
             search : "" ,
             refresh : false , 
+            loading : false , 
+            numberFilter : Number
+
         }
     } , 
 
@@ -49,11 +56,15 @@ export default {
         doLoad(){
             this.refresh = !this.refresh
             return this.$store.dispatch('Posts/DO_LOAD')
+        } ,
+
+        filterPosts(){
+            return this.$store.dispatch('Posts/FILTER_DATA' , this.numberFilter)
         }
     } ,
     
     mounted(){
-        return this.$store.dispatch('Posts/GET_DATA')
+        this.$store.dispatch('Posts/GET_DATA')
     } ,
 
     computed : {
@@ -71,6 +82,6 @@ export default {
 </script>
 
 <style scoped >
-.trans{animation: 2s trans;}
-@keyframes trans { 0%{transform: rotate(0deg);} 50%{transform: rotate(90deg);} 100%{transform: rotate(0deg);}}
+.trans{animation: 1s trans;}
+@keyframes trans { 0%{transform: rotate(0deg);} 50%{transform: rotate(150deg);} 100%{transform: rotate(0deg);}}
 </style>

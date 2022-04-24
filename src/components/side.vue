@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-   
+  
       <button
         class="btn"
         style="margin:5px 5px;"
@@ -52,6 +52,10 @@ export default {
 </script>
 
 <style scoped >
+.header{
+  width: 100%;
+  box-shadow: 2px 1px 5px #505050; 
+}
 .link{
     text-decoration: none;
     padding: 5px 10px;

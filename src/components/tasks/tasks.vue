@@ -4,23 +4,29 @@
           <div class="col-sm-6" style="display:flex;">
              <h1>JSON Placeholder</h1>
              <h5 style="padding:20px 5px;">Tasks Page</h5>
+             <i class="bi bi-arrow-clockwise" @click="doLoad" :class="{'trans':refresh}" style="padding:10px 5px; font-size:30px;cursor: pointer;"></i>
+              
           </div>
           <div class="col-sm-6" style="display:flex;">
+              <createTask/>
               <input 
               type="text" 
               v-model="search" 
               class="form-control" 
               placeholder="Search" 
-              style="width:500px; height:45px; margin:10px 5px;"
+              style="width:400px; height:45px; margin:15px 5px;"
               >
-              <select class="form-select" aria-label="Default select example" style="width:200px; height:45px; margin:10px 5px;">
-                <option selected>Filter Tasks</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select v-model="filterNumber" @change="filterTasks" class="form-select" aria-label="Default select example" style="width:200px; height:45px; margin:15px 5px;">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="50">50</option>
                </select>
           </div>
           <hr>
+      </div>
+      <div class="row">
+         
       </div>
       <div class="row">
            <div class="col-sm-6" v-for="task in getTasks" :key="task.id">
@@ -34,11 +40,27 @@
 </template>
 
 <script>
+import createTask from './createTask.vue'
 export default {
+
+    components : {createTask} ,
 
     data(){
         return{
-          search : "" 
+          search : "" , 
+          refresh : false , 
+          filterNumber : Number
+        }
+    } ,
+
+    methods : {
+        doLoad(){
+            this.refresh = !this.refresh
+            return this.$store.dispatch('Tasks/DO_LOAD') 
+        } ,
+
+        filterTasks(){
+            return this.$store.dispatch('Tasks/FILTER_DATA' , this.filterNumber)
         }
     } ,
     
@@ -58,6 +80,7 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped >
+.trans{animation: 1s trans;}
+@keyframes trans { 0%{transform: rotate(0deg);} 50%{transform: rotate(150deg);} 100%{transform: rotate(0deg);}}
 </style>
