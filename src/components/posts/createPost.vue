@@ -1,7 +1,7 @@
 <template>
 <div class="createPost">
      <!-- Button trigger modal -->
-<button type="button" class="btn btn-dark mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-dark mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Create Post
 </button>
 

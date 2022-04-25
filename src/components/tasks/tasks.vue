@@ -3,9 +3,8 @@
           <div class="row">
           <div class="col-sm-6" style="display:flex;">
              <createTask/>
-             <i class="bi bi-arrow-clockwise" @click="doLoad" :class="{'trans':refresh}" style="padding:17px 5px; font-size:35px;cursor: pointer;"></i>
-             <h3 style="padding:22px 5px;">Tasks Page</h3>
-              
+             <i class="bi bi-arrow-clockwise refresh_icon" @click="doLoad" :class="{'trans':refresh}"></i>
+             <h5 class="p-3">Tasks Page</h5>
           </div>
           <div class="col-sm-6" style="display:flex;">
              

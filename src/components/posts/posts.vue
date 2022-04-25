@@ -3,8 +3,8 @@
           <div class="row">
           <div class="col-sm-6" style="display:flex;">
              <createPost/>
-             <i class="bi bi-arrow-clockwise" @click="doLoad" :class="{'trans':refresh}" style="padding:12px 5px; font-size:35px;cursor: pointer;"></i>
-             <h3 style="padding:18px 5px;">Posts Page</h3>
+             <i class="bi bi-arrow-clockwise refresh_icon" @click="doLoad" :class="{'trans':refresh}"></i>
+             <h5 class="p-3">Posts Page</h5>
           </div>
           <div class="col-sm-6" style="display:flex;">
               <input type="text" 

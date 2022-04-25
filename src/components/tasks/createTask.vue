@@ -1,7 +1,7 @@
 <template>
   <div class="createTask">
      <!-- Button trigger modal -->
-<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-dark mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Create Task
 </button>
 
@@ -67,9 +67,5 @@ export default {
 </script>
 
 <style scoped >
-.createTask{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
+
 </style>
