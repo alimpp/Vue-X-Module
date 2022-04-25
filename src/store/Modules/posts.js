@@ -1,8 +1,9 @@
 import axios from "axios"
 import { GET_DATA } from '../constans/actions_constans'
-import { SET_DATA } from '../constans/mutation_constans'
+import { SET_DATA , NEW_DATA } from '../constans/mutation_constans'
 import { DO_LOAD } from '../constans/actions_constans'
 import { FILTER_DATA } from '../constans/actions_constans'
+import { CREATE } from '../constans/actions_constans'
 
 const Posts = {
 
@@ -22,6 +23,10 @@ const Posts = {
             return state.posts = posts
         } , 
 
+        [NEW_DATA](state , post){
+            return state.posts.unshift(post)
+        }
+
     },
     actions: {
 
@@ -38,6 +43,14 @@ const Posts = {
        async [FILTER_DATA]({commit} , limit){
             const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?_limit=${limit}`)
             commit('SET_DATA' , response.data)
+       } , 
+
+       async [CREATE]({commit} , newPost){
+           const response = await axios.post('https://jsonplaceholder.typicode.com/posts' , {
+               title : newPost.title , 
+               body : newPost.body , 
+           })
+           commit('NEW_DATA' , response.data)
        }
 
     },

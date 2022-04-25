@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-  
+      
       <button
         class="btn"
         style="margin:5px 5px;"
@@ -11,6 +11,7 @@
       >
       <i class="bi bi-list w-text" style="font-size:25px;"></i>
       </button>
+      <h1 class="title_page">JSON Placeholder</h1>
 
   <div
       class="offcanvas offcanvas-end navigation"
@@ -54,6 +55,7 @@ export default {
 <style scoped >
 .header{
   width: 100%;
+  display: flex;
   box-shadow: 2px 1px 5px #505050; 
 }
 .link{

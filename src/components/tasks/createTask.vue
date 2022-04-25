@@ -1,8 +1,8 @@
 <template>
   <div class="createTask">
      <!-- Button trigger modal -->
-<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <i class="bi bi-pencil" style="font-size:20px;"></i>
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Create Task
 </button>
 
 <!-- Modal -->
@@ -14,7 +14,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input v-model="newTask" type="text" class="form-control" placeholder="Type Text">
+        <input v-model="title" type="text" class="form-control" placeholder="Type Text">
       </div>
       <div class="modal-footer">
         <button @click="createTask" type="button" class="btn btn-primary">Create</button>
@@ -31,27 +31,29 @@ export default {
    
    data(){
        return{
-           newTask : ""
+           title : ""
        }
    } , 
 
    methods : {
        createTask(){
-           if(this.newTask === ""){
+           if(this.title === ""){
               Swal.fire({
               position: 'center',
               icon: 'warning',
               title: 'Form is Required',
               showConfirmButton: false,
-              timer: 1500
+              timerProgressBar : true , 
+              toast : true , 
+              timer: 3000
               })
            }else{
-              this.$store.dispatch('Tasks/CREATE' , this.newTask)
-              this.newTask = ""
+              this.$store.dispatch('Tasks/CREATE' , this.title)
+              this.title = ""
               Swal.fire({
               position: 'center',
               icon: 'success',
-              title: 'Form is Required',
+              title: 'Task Created',
               showConfirmButton: false,
               timerProgressBar : true , 
               toast : true , 

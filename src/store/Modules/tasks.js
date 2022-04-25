@@ -1,7 +1,6 @@
 import axios from "axios"
 import { GET_DATA } from '../constans/actions_constans'
-import { SET_DATA } from '../constans/mutation_constans'
-import { NEW_TASK } from '../constans/mutation_constans'
+import { NEW_DATA, SET_DATA } from '../constans/mutation_constans'
 import { DO_LOAD } from '../constans/actions_constans'
 import { FILTER_DATA } from "../constans/actions_constans"
 import { CREATE } from '../constans/actions_constans'
@@ -22,7 +21,7 @@ const Tasks = {
         [SET_DATA](state , tasks){
             return state.tasks = tasks
         } , 
-        [NEW_TASK](state , task){
+        [NEW_DATA](state , task){
             return state.tasks.unshift(task)
         }
     },
@@ -47,7 +46,7 @@ const Tasks = {
                 title : newTask , 
                 completed : false 
             })
-            commit('NEW_TASK' , response.data)
+            commit('NEW_DATA' , response.data)
         }
 
     },

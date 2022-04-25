@@ -2,9 +2,9 @@
   <div class="container">
           <div class="row">
           <div class="col-sm-6" style="display:flex;">
-             <h1>JSON Placeholder</h1>
-             <h5 style="padding:20px 5px;">Posts Page</h5>
-             <i class="bi bi-arrow-clockwise" @click="doLoad" :class="{'trans':refresh}" style="padding:10px 5px; font-size:30px;cursor: pointer;"></i>
+             <createPost/>
+             <i class="bi bi-arrow-clockwise" @click="doLoad" :class="{'trans':refresh}" style="padding:12px 5px; font-size:35px;cursor: pointer;"></i>
+             <h3 style="padding:18px 5px;">Posts Page</h3>
           </div>
           <div class="col-sm-6" style="display:flex;">
               <input type="text" 
@@ -40,7 +40,10 @@
 </template>
 
 <script>
+import createPost from './createPost.vue'
 export default {
+
+    components : {createPost} ,
 
     data(){
         return{
@@ -83,5 +86,5 @@ export default {
 
 <style scoped >
 .trans{animation: 1s trans;}
-@keyframes trans { 0%{transform: rotate(0deg);} 50%{transform: rotate(150deg);} 100%{transform: rotate(0deg);}}
+@keyframes trans { 0%{transform: rotate(0deg);} 100%{transform: rotate(360deg);}}
 </style>

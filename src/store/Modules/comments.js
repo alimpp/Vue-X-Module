@@ -1,6 +1,6 @@
 import axios from "axios"
-import { GET_DATA } from '../constans/actions_constans'
-import { SET_DATA } from '../constans/mutation_constans'
+import { GET_DATA , CREATE} from '../constans/actions_constans'
+import { SET_DATA , NEW_DATA } from '../constans/mutation_constans'
 import { DO_LOAD } from "../constans/actions_constans"
 import { FILTER_DATA } from "../constans/actions_constans"
 
@@ -19,7 +19,12 @@ const Comments = {
     mutations: {
         [SET_DATA](state , comments){
             return state.comments = comments
+        } , 
+
+        [NEW_DATA](state , comment){
+            return state.comments.unshift(comment)
         }
+
     },
     actions: {
        async [GET_DATA]({commit}){
@@ -35,7 +40,17 @@ const Comments = {
        async [FILTER_DATA]({commit} , limit){
            const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?_limit=${limit}`)
            commit('SET_DATA' , response.data)
+       } , 
+
+       async [CREATE]({commit} , newComment){
+           const response = await axios.post('https://jsonplaceholder.typicode.com/comments' , {
+               name : newComment.name , 
+               body : newComment.body , 
+               email : newComment.email , 
+           })
+           commit('NEW_DATA' , response.data)
        }
+
     },
 }
 

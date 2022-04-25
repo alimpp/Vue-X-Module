@@ -2,18 +2,24 @@
   <div class="container">
       <div class="row">
           <h1>Blogs Page</h1>
-          {{test}}
+          <div class="row">
+             {{getBlogs}}
+          </div>
       </div>
   </div>
 </template>
 
 <script>
 export default {
-    
+     
      computed : {
-         test(){
-             return this.$store.getters['Blogs/test']
+         getBlogs(){
+             return this.$store.getters['Blogs/allBlogs']
          }
+     } , 
+
+     mounted(){
+         return this.$store.dispatch('Blogs/GET_DATA')
      }
 
 } 
