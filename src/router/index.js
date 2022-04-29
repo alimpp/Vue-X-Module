@@ -4,8 +4,9 @@ import postsPage from '../views/postsPage'
 import tasksPage from '../views/tasksPage'
 import usersPage from '../views/usersPage'
 import commentsPage from '../views/commentsPage'
-import blogsPage from '../views/blogsPage'
+
 const routes = [
+  
    {
      path: '/',
      name: 'homePage',
@@ -31,11 +32,7 @@ const routes = [
     name: 'commentsPage',
     component: commentsPage
   },
-  {
-    path: '/BLOGS',
-    name: 'blogsPage',
-    component: blogsPage
-  },
+  
 ]
 
 const router = createRouter({

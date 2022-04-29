@@ -39,7 +39,6 @@
              <router-link to="/TASKS" class="link">Tasks</router-link>
              <router-link to="/USERS" class="link">Users</router-link>
              <router-link to="/COMMENTS" class="link">Comments</router-link>
-             <router-link to="/BLOGS" class="link">Blogs</router-link>
          </div>
       </div>
     </div>

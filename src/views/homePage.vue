@@ -1,8 +1,13 @@
 <template>
   <div class="home anim">
     <img src="../assets/api-icon.png" class="transform_anim" style="width:100px; height:100px; border-radius:50%; padding-bottom:5px;">
-    <h4 class="mt-3">Welcome To Vue X Module With Api</h4>
-    <router-link to="/POSTS"><button class="btn btn-primary mt-3">Get Started</button></router-link>
+    <h1>JSON Placeholder</h1>
+    <div>
+      <router-link to="/POSTS"><button class="btn btn-primary m-1">Get Started</button></router-link>
+    <a href="https://jsonplaceholder.typicode.com/" target="blank">
+      <button class="btn btn-danger m-1">JSON Placeholder</button>
+    </a>
+    </div>
   </div>
 </template>
 
@@ -21,5 +26,4 @@ export default {
   align-items: center;
   padding: 0px 20px;
 }
-
 </style>

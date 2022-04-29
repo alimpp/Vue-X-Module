@@ -1,9 +1,6 @@
 import axios from "axios"
-import { GET_DATA } from '../constans/actions_constans'
-import { NEW_DATA, SET_DATA } from '../constans/mutation_constans'
-import { DO_LOAD } from '../constans/actions_constans'
-import { FILTER_DATA } from "../constans/actions_constans"
-import { CREATE } from '../constans/actions_constans'
+import { GET_DATA , UPDATE , DO_LOAD , FILTER_DATA , CREATE } from '../constans/actions_constans'
+import { NEW_DATA, SET_DATA , UPDATE_TASK  } from '../constans/mutation_constans'
 
 const Tasks = {
 
@@ -23,6 +20,12 @@ const Tasks = {
         } , 
         [NEW_DATA](state , task){
             return state.tasks.unshift(task)
+        } , 
+        [UPDATE_TASK](state , task){
+            const item = state.tasks.findIndex(index => index.id === task.id)
+            if(item != -1){
+                state.tasks.splice(item , 1 , task)
+            }
         }
     },
     actions: {
@@ -47,6 +50,15 @@ const Tasks = {
                 completed : false 
             })
             commit('NEW_DATA' , response.data)
+        } , 
+
+        async [UPDATE]({commit} , task){
+             const response = await axios.put(`https://jsonplaceholder.typicode.com/todos/${task.id}` , {
+                 id : task.id , 
+                 title : task.title , 
+                 completed : !task.completed
+             })  
+             commit('UPDATE_TASK' , response.data)
         }
 
     },

@@ -29,16 +29,34 @@
       </div>
       <div class="row">
            <div class="col-sm-6" v-for="task in getTasks" :key="task.id">
-              <div class="cart">
+
+              <div class="cart cart_complete" v-if="task.completed">
                   <h5>Title</h5>
                   <h6>{{task.title}}</h6>
+                  <hr>
+                  <div>
+                      <i class="bi bi-arrow-left-right p-1" @click="updateTask(task)" style="font-size:20px;"></i>
+                      <i class="bi bi-trash p-1" style="font-size:20px;"></i>
+                  </div>
               </div>
+
+              <div class="cart" v-else>
+                  <h5>Title</h5>
+                  <h6>{{task.title}}</h6>
+                  <hr>
+                  <div>
+                      <i class="bi bi-arrow-left-right p-1" @click="updateTask(task)" style="font-size:20px;"></i>
+                      <i class="bi bi-trash p-1" style="font-size:20px;"></i>
+                  </div>
+              </div>
+
           </div>
       </div>
   </div>
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import createTask from './createTask.vue'
 export default {
 
@@ -48,7 +66,7 @@ export default {
         return{
           search : "" , 
           refresh : false , 
-          filterNumber : Number
+          filterNumber : Number , 
         }
     } ,
 
@@ -60,7 +78,21 @@ export default {
 
         filterTasks(){
             return this.$store.dispatch('Tasks/FILTER_DATA' , this.filterNumber)
-        }
+        } , 
+
+        updateTask(task){
+            this.$store.dispatch('Tasks/UPDATE' , task) 
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Task Updated',
+              showConfirmButton: false,
+              timerProgressBar : true , 
+              toast : true , 
+              timer: 1500
+            })
+        } , 
+
     } ,
     
     mounted(){
@@ -80,6 +112,7 @@ export default {
 </script>
 
 <style scoped >
+.cart_complete{background: #505050;}
 .trans{animation: 1s trans;}
-@keyframes trans { 0%{transform: rotate(0deg);} 100%{transform: rotate(360deg);}}
+@keyframes trans { 0%{transform: rotate(0deg);} 100%{transform: rotate(360deg);} }
 </style>
