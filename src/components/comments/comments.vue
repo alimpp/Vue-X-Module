@@ -35,6 +35,8 @@
                   <hr>
                   <h5>Email</h5>
                   <h6>{{comment.email}}</h6>
+                  <hr>
+                  <i class="bi bi-trash p-1" @click="deleteComment(comment.id)" style="font-size:20px;"></i>
               </div>
           </div>
       </div>
@@ -42,6 +44,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import createComment from './createComment.vue'
 
 export default {
@@ -65,6 +68,19 @@ export default {
 
          filterComments(){
              return this.$store.dispatch('Comments/FILTER_DATA' , this.numberFilter)
+         } , 
+
+         deleteComment(id){
+             this.$store.dispatch('Comments/DELETE' , id)
+              Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: 'Comment Deleted',
+              showConfirmButton: false,
+              timerProgressBar : true , 
+              toast : true , 
+              timer: 1500
+            })
          }
      } ,
     

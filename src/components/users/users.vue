@@ -33,6 +33,8 @@
                   <hr>
                   <h5>Email</h5>
                   <h6>{{user.email}}</h6>
+                  <hr>
+                  <i class="bi bi-trash p-1" @click="deleteUser(user.id)" style="font-size:20px;"></i>
               </div>
           </div>
       </div>
@@ -40,6 +42,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import createUser from './createUser.vue'
 
 export default {
@@ -63,6 +66,19 @@ export default {
 
          filterUsers(){
              return this.$store.dispatch('Users/FILTER_DATA' , this.numberFilter)
+         } , 
+
+         deleteUser(id){
+             this.$store.dispatch('Users/DELETE' , id)
+              Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: 'User Deleted',
+              showConfirmButton: false,
+              timerProgressBar : true , 
+              toast : true , 
+              timer: 1500
+            })
          }
      } , 
     
