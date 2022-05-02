@@ -1,6 +1,6 @@
 import axios from "axios"
-import { GET_DATA , CREATE , FILTER_DATA , DO_LOAD } from '../constans/actions_constans'
-import { SET_DATA , NEW_DATA } from '../constans/mutation_constans'
+import { GET_DATA , CREATE , FILTER_DATA , DO_LOAD , DELETE } from '../constans/actions_constans'
+import { SET_DATA , NEW_DATA , DELETED } from '../constans/mutation_constans'
 
 const Comments = {
 
@@ -21,6 +21,9 @@ const Comments = {
 
         [NEW_DATA](state , comment){
             return state.comments.unshift(comment)
+        } , 
+        [DELETED](state , id){
+            state.comments = state.comments.filter(comment => comment.id != id)
         }
 
     },
@@ -47,6 +50,11 @@ const Comments = {
                email : newComment.email , 
            })
            commit('NEW_DATA' , response.data)
+       } ,
+
+       async [DELETE]({commit} , id){
+           await axios.delete(`https://jsonplaceholder.typicode.com/comments/${id}`)
+           commit('DELETED' , id)
        }
 
     },
