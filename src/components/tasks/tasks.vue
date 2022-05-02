@@ -36,7 +36,7 @@
                   <hr>
                   <div>
                       <i class="bi bi-arrow-left-right p-1" @click="updateTask(task)" style="font-size:20px;"></i>
-                      <i class="bi bi-trash p-1" style="font-size:20px;"></i>
+                      <i class="bi bi-trash p-1" @click="deleteTask(task.id)" style="font-size:20px;"></i>
                   </div>
               </div>
 
@@ -46,7 +46,7 @@
                   <hr>
                   <div>
                       <i class="bi bi-arrow-left-right p-1" @click="updateTask(task)" style="font-size:20px;"></i>
-                      <i class="bi bi-trash p-1" style="font-size:20px;"></i>
+                      <i class="bi bi-trash p-1" @click="deleteTask(task.id)" style="font-size:20px;"></i>
                   </div>
               </div>
 
@@ -92,6 +92,19 @@ export default {
               timer: 1500
             })
         } , 
+
+        deleteTask(id){
+             this.$store.dispatch('Tasks/DELETE' , id)
+              Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: 'Task Deleted',
+              showConfirmButton: false,
+              timerProgressBar : true , 
+              toast : true , 
+              timer: 1500
+            })
+        }
 
     } ,
     

@@ -1,6 +1,6 @@
 import axios from "axios"
-import { GET_DATA , UPDATE , DO_LOAD , FILTER_DATA , CREATE } from '../constans/actions_constans'
-import { NEW_DATA, SET_DATA , UPDATE_TASK  } from '../constans/mutation_constans'
+import { GET_DATA , UPDATE , DO_LOAD , FILTER_DATA , CREATE , DELETE } from '../constans/actions_constans'
+import { NEW_DATA, SET_DATA , UPDATE_TASK , DELETE_TASK  } from '../constans/mutation_constans'
 
 const Tasks = {
 
@@ -25,8 +25,14 @@ const Tasks = {
             const item = state.tasks.findIndex(index => index.id === task.id)
             if(item != -1){
                 state.tasks.splice(item , 1 , task)
+            }else{
+                console.log("ERROR");
             }
+        } , 
+        [DELETE_TASK](state , id){
+          state.tasks = state.tasks.filter(task => task.id != id)
         }
+
     },
     actions: {
         async [GET_DATA]({commit}){
@@ -59,6 +65,12 @@ const Tasks = {
                  completed : !task.completed
              })  
              commit('UPDATE_TASK' , response.data)
+        } , 
+
+        async [DELETE]({commit} , id){
+            await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+            commit('DELETE_TASK' , id)
+            console.log(id);
         }
 
     },
