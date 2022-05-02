@@ -33,6 +33,8 @@
                  <h6 class="text_b">{{post.title}}</h6>
                  <h5 class="text_a">Body</h5>
                  <h6 class="text_b">{{post.body}}</h6>
+                 <hr>
+                 <i class="bi bi-trash p-1" @click="deletePost(post.id)" style="font-size:20px;"></i>
              </div>
          </div>
       </div>
@@ -40,6 +42,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import createPost from './createPost.vue'
 export default {
 
@@ -63,6 +66,19 @@ export default {
 
         filterPosts(){
             return this.$store.dispatch('Posts/FILTER_DATA' , this.numberFilter)
+        } , 
+
+        deletePost(id){
+            this.$store.dispatch('Posts/DELETE' , id)
+             Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: 'Post Deleted',
+              showConfirmButton: false,
+              timerProgressBar : true , 
+              toast : true , 
+              timer: 1500
+            })
         }
     } ,
     

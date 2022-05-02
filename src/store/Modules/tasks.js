@@ -70,7 +70,6 @@ const Tasks = {
         async [DELETE]({commit} , id){
             await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
             commit('DELETE_TASK' , id)
-            console.log(id);
         }
 
     },
