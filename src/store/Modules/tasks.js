@@ -1,6 +1,6 @@
 import axios from "axios"
 import { GET_DATA , UPDATE , DO_LOAD , FILTER_DATA , CREATE , DELETE } from '../constans/actions_constans'
-import { NEW_DATA, SET_DATA , UPDATE_TASK , DELETE_TASK  } from '../constans/mutation_constans'
+import { NEW_DATA, SET_DATA , UPDATE_TASK , DELETED  } from '../constans/mutation_constans'
 
 const Tasks = {
 
@@ -29,7 +29,7 @@ const Tasks = {
                 console.log("ERROR");
             }
         } , 
-        [DELETE_TASK](state , id){
+        [DELETED](state , id){
           state.tasks = state.tasks.filter(task => task.id != id)
         }
 
@@ -69,7 +69,7 @@ const Tasks = {
 
         async [DELETE]({commit} , id){
             await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
-            commit('DELETE_TASK' , id)
+            commit('DELETED' , id)
         }
 
     },

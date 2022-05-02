@@ -1,8 +1,6 @@
 import axios from "axios"
-import { GET_DATA , CREATE} from '../constans/actions_constans'
+import { GET_DATA , CREATE , FILTER_DATA , DO_LOAD } from '../constans/actions_constans'
 import { SET_DATA , NEW_DATA } from '../constans/mutation_constans'
-import { DO_LOAD } from "../constans/actions_constans"
-import { FILTER_DATA } from "../constans/actions_constans"
 
 const Comments = {
 
